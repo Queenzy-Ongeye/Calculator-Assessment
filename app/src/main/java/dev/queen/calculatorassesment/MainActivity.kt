@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        viewIds()
+        setOnClicks()
+    }
+
+    fun viewIds(){
         tilFirstNumber = findViewById(R.id.tilFirstNumber)
         tilSecondNumber = findViewById(R.id.tilSecNumber)
         etFirstNumber = findViewById(R.id.etFirstNumber)
@@ -37,30 +42,41 @@ class MainActivity : AppCompatActivity() {
         btnMode = findViewById(R.id.btnMode)
         btnDivide = findViewById(R.id.btnDivide)
         tvResults = findViewById(R.id.tvResults)
+    }
 
+    fun setOnClicks(){
         btnAdd.setOnClickListener {
-            obtainInputs()
             add()
+            obtainInputs()
         }
 
         btnSubtract.setOnClickListener {
-            obtainInputs()
             sub()
+            obtainInputs()
         }
 
         btnMode.setOnClickListener {
-            obtainInputs()
             modulus()
+            obtainInputs()
         }
 
         btnDivide.setOnClickListener {
-            obtainInputs()
             divide()
+            obtainInputs()
         }
-
-
     }
 
+    fun obtainInputs(){
+        var num_one = etFirstNumber.text.toString()
+        var num_two = etFirstNumber.text.toString()
+
+        if (num_one.isBlank()){
+            tilFirstNumber.error = "First number required"
+        }
+        if (num_two.isBlank()){
+            tilSecondNumber.error = "Second number required"
+        }
+    }
     fun add(){
         var num_one = etFirstNumber.text.toString().toInt()
         var num_two = etSecondNumber.text.toString().toInt()
@@ -88,18 +104,6 @@ class MainActivity : AppCompatActivity() {
         tvResults.text = divide.toString()
     }
 
-
-    fun obtainInputs(){
-        var num_one = etFirstNumber.text.toString()
-        var num_two = etFirstNumber.text.toString()
-
-        if (num_one.isBlank()){
-            tilFirstNumber.error = "First number required"
-        }
-        if (num_two.isBlank()){
-            tilSecondNumber.error = "Second number required"
-        }
-    }
 
 }
 
